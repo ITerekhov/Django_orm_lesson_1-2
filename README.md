@@ -14,6 +14,7 @@ DB_PORT={your data}
 DB_NAME={your data}
 DB_USER={your data}
 DB_PASSWORD={your data}
+```
 Далее запускаем программу:
 ```
 $ python manage.py runserver

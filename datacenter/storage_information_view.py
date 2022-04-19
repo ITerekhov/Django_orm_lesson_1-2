@@ -7,11 +7,11 @@ def storage_information_view(request):
     non_closed_visits = Visit.objects.filter(leaved_at=None)
     for visit in non_closed_visits:
         duration = visit.format_duration()
-        data = {
+        visit_details = {
             'who_entered': visit.passcard.owner_name,
             'entered_at': visit.entered_at,
             'duration': duration}
-        serialized_visits.append(data)
+        serialized_visits.append(visit_details)
     context = {
         'non_closed_visits': serialized_visits, 
     }

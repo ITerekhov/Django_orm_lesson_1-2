@@ -1,3 +1,4 @@
+from distutils.util import strtobool
 import os
 
 from dotenv import load_dotenv
@@ -19,15 +20,14 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
 
-debug = os.getenv('DEBUG')
-if debug.lower() == 'true':
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = strtobool(os.getenv('DEBUG'))
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
+allowed_hosts_config = os.getenv('ALLOWED_HOSTS')
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
+if allowed_hosts_config:
+    ALLOWED_HOSTS.extend(allowed_hosts_config)
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

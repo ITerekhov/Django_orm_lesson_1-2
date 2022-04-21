@@ -13,7 +13,7 @@ DB_HOST={your data}
 DB_PORT={your data}
 DB_NAME={your data}
 DB_USER={your data}
-DB_PASSWORD={your data}0
+DB_PASSWORD={your data}
 ```
 По умолчанию доступен только локальный хост, поэтому если хотите это изменить пишите в этот же файл:
 ```

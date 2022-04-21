@@ -1,18 +1,18 @@
-from distutils.util import strtobool
 import os
 
-from dotenv import load_dotenv
+from environs import Env
 
+env = Env()
+env.read_env()
 
-load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': env.str('DB_HOST'),
+        'PORT': env.int('DB_PORT'),
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
     }
 }
 
@@ -20,15 +20,11 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
 
-DEBUG = strtobool(os.getenv('DEBUG'))
+DEBUG = env.bool("DEBUG")
 
 ROOT_URLCONF = 'project.urls'
 
-allowed_hosts_config = os.getenv('ALLOWED_HOSTS')
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
-if allowed_hosts_config:
-    ALLOWED_HOSTS.extend(allowed_hosts_config)
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['localhost', '127.0.0.1'])
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
@@ -38,7 +34,6 @@ TEMPLATES = [
         'APP_DIRS': True,
     },
 ]
-
 
 USE_L10N = True
 

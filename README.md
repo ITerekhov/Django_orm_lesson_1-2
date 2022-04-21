@@ -13,7 +13,11 @@ DB_HOST={your data}
 DB_PORT={your data}
 DB_NAME={your data}
 DB_USER={your data}
-DB_PASSWORD={your data}
+DB_PASSWORD={your data}0
+```
+По умолчанию доступен только локальный хост, поэтому если хотите это изменить пишите в этот же файл:
+```
+ALLOWED_HOSTS={your host1,your host2}
 ```
 Далее запускаем программу:
 ```
